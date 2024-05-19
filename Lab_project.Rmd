@@ -4,9 +4,9 @@ date: "`r Sys.Date()`"
 output: github_document
 ---
 
-**Student Name:<insert your name here>**
+**Student Name:<insert your name here>**reem saud
 
-**Student ID:<insert ID here>**
+**Student ID:<insert ID here>**2221002374
 
 
 **Deadline:** 23:59 on Sunday, 19 May 2024
@@ -28,7 +28,9 @@ library(ggrepel)
 
 `1. (2 points)
 ```{r}
-
+# Count the number of pets
+num_pets <- nrow(seattlepets)
+num_pets
 ```
 Write your narrative here
 
@@ -38,7 +40,9 @@ Write your narrative here
 `2. (2 points)
 
 ```{r}
-
+# Count the number of variables
+num_variables <- ncol(seattlepets)
+num_variables
 ```
 Write your narrative below
 
@@ -46,21 +50,37 @@ Write your narrative below
 
 `3. (2 points)
 ```{r}
-
+# Count the frequency of each species
+species_count <- table(seattlepets$species)
+species_count
 ```
 Write your narrative here
 
 
 `4. (2 points)
 ```{r}
+# Count the frequency of each pet name
+pet_name_frequency <- table(seattlepets$animal_name)
 
+# Sort the frequency table in descending order
+sorted_pet_names <- sort(pet_name_frequency, decreasing = TRUE)
+
+# Display the top ten most common pet names
+head(sorted_pet_names, 10)
 ```
 Write your narrative here
 
 
 `5. (2 points)
 ```{r}
+# Filter records for species Pig
+pig_records <- filter(seattlepets, species == "Pig")
 
+# Arrange the filtered records by pet names (animal_name)
+sorted_pig_records <- arrange(pig_records, animal_name)
+
+# Display the sorted pig records
+sorted_pig_records
 ```
 Write your narrative here
 
@@ -69,7 +89,14 @@ Write your narrative here
 
 `6. (2 points)
 ```{r}
+# Select only pet name (animal_name) and primary breed for species Goat
+goat_records <- select(filter(seattlepets, species == "Goat"), animal_name, primary_breed)
 
+# Arrange the selected records by pet names (animal_name)
+sorted_goat_records <- arrange(goat_records, animal_name)
+
+# Display the sorted goat records
+sorted_goat_records
 ```
 Write your narrative here
 
@@ -79,7 +106,17 @@ Write your narrative here
 
 `7. (2 points)
 ```{r}
+library(dplyr)
 
+# Concatenate animal_name and species into a single column named pet
+seattlepets <- mutate(seattlepets, pet = paste(animal_name, species, sep = " - "))
+
+# Select license_number and pet, then arrange by pet
+sorted_records <- select(seattlepets, license_number, pet) %>%
+                  arrange(pet)
+
+# Display the sorted records
+sorted_records
 ```
 Write your narrative here
 
@@ -87,7 +124,16 @@ Write your narrative here
 
 `8. (2 points)
 ```{r}
+library(ggplot2)
 
+# Create a bar plot of species counts
+species_plot <- ggplot(seattlepets, aes(x = species)) +
+                geom_bar() +
+                labs(title = "Counts of Species", x = "Species", y = "Count") +
+                theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Display the plot
+print(species_plot)
 ```
 Write your narrative here
 
@@ -107,7 +153,10 @@ top_10_names
 
 `b. Plot the counts of the pet names (animal_name) in top_10_names
 ```{r}
-
+top_10_names <- seattlepets %>% 
+filter(animal_name %in% c( "Lucy"  , "Charlie" , "Luna" , "Bella" , "Max"    , 
+                           "Daisy" , "Molly"   , "Jack" , "Lily"  , "Stella" ))
+top_10_names
 ```
 
 
@@ -165,11 +214,11 @@ ggplot(comb_name_props, aes(x = cat_prop, y = dog_prop)) +
 
 `What names are more common for cats than dogs? The ones above the line or the ones below the line?
 
-`Answer here..................
+`Answer here.........The names that are more common for cats than dogs are the ones above the diagonal line (x = y) on the plot.
 
 
 
 `Is the relationship between the two variables (proportion of cats with a given name and proportion of dogs with a given name) positive or negative? What does this mean in context of the data?
 
-`Answer here .............
+`Answer here .....The relationship between the proportion of cats with a given name and the proportion of dogs with the same name is negative. In the context of the data, this negative relationship means that as the proportion of cats with a given name increases, the proportion of dogs with the same name tends to decrease, and vice versa. This suggests an inverse relationship in the popularity of names between cats and dogs in the dataset.
 
