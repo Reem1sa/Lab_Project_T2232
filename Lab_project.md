@@ -1,6 +1,6 @@
 DSC 200 Lab Project -Term 2232
 ================
-2024-05-19
+2024-05-26
 
 **Student Name:<insert your name here>**reem saud
 
@@ -30,7 +30,12 @@ num_pets
 
     ## [1] 52519
 
-Write your narrative here
+Explanation:
+
+This code calculates the total number of pets included in the dataset by
+counting the number of rows in pets_data. Each row in the dataset
+represents one pet, so the number of rows gives us the total number of
+pets.
 
 \`2. (2 points)
 
@@ -42,7 +47,11 @@ num_variables
 
     ## [1] 7
 
-Write your narrative below
+Explanation:
+
+This code calculates the number of variables (columns) in the dataset by
+counting the number of columns in pets_data. Each column represents a
+different attribute or variable for the pets.
 
 \`3. (2 points)
 
@@ -56,7 +65,12 @@ species_count
     ##   Cat   Dog  Goat   Pig 
     ## 17294 35181    38     6
 
-Write your narrative here
+Explanation:
+
+This code calculates the number of pets for each species in the dataset.
+It uses the group_by function to group the data by the species column
+and then uses the summarise function to count the number of pets in each
+species group.
 
 \`4. (2 points)
 
@@ -75,7 +89,10 @@ head(sorted_pet_names, 10)
     ##    Lucy Charlie    Luna   Bella     Max   Daisy   Molly    Jack    Lily  Stella 
     ##     439     387     355     331     270     261     240     232     232     227
 
-Write your narrative here
+Explanation: In this task, we loaded the pet data from a CSV file named
+seattle_pets.csv. We used the dplyr library to count the frequencies of
+each pet name and then displayed the top ten most common pet names in
+descending order of frequency.
 
 \`5. (2 points)
 
@@ -101,7 +118,11 @@ sorted_pig_records
     ## 6 2018-05-12         S141788        <NA>        Pig     Standard     
     ## # ℹ 2 more variables: secondary_breed <chr>, zip_code <chr>
 
-Write your narrative here
+Explanation: In this task, we loaded the pet data from a CSV file named
+seattle_pets.csv. We used the dplyr library to filter the dataset for
+records where the species is “Pig”. We then sorted these records by the
+pet names (animal_name) in ascending order and displayed the resulting
+records.
 
 \`6. (2 points)
 
@@ -131,7 +152,12 @@ sorted_goat_records
     ## 10 Grace           Miniature    
     ## # ℹ 28 more rows
 
-Write your narrative here
+Explanation: In this task, we loaded the pet data from a CSV file named
+seattle_pets.csv. We used the dplyr library to select only the
+animal_name and primary_breed columns. We then filtered the dataset for
+records where the species is “Goat” and sorted these records by the pet
+names (animal_name) in ascending order. Finally, we displayed the
+resulting records.
 
 \`7. (2 points)
 
@@ -164,7 +190,12 @@ sorted_records
     ## 10 S142492        "7's - Dog"                             
     ## # ℹ 52,509 more rows
 
-Write your narrative here
+Explanation: In this task, we loaded the pet data from a CSV file named
+seattle_pets.csv. We used the dplyr library to concatenate the
+animal_name and species columns into a single column named pet using the
+paste function with sep = “;”. We then selected only the license_number
+and pet columns and sorted these records by the pet column in ascending
+order. Finally, we displayed the resulting records.
 
 \`8. (2 points)
 
@@ -181,8 +212,12 @@ species_plot <- ggplot(seattlepets, aes(x = species)) +
 print(species_plot)
 ```
 
-![](Lab_project_files/figure-gfm/unnamed-chunk-8-1.png)<!-- --> Write
-your narrative here
+![](Lab_project_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+Explanation: In this task, we loaded the pet data from a CSV file named
+seattle_pets.csv. We used the ggplot2 library to create a bar plot of
+the counts of different species. The geom_bar() function was used to
+generate the bar chart, and we added labels and a minimal theme for
+better readability. Finally, we displayed the resulting plot.
 
 \`9. (2 points)
 
@@ -209,9 +244,11 @@ top_10_names
     ## # ℹ 2,964 more rows
     ## # ℹ 3 more variables: secondary_breed <chr>, zip_code <chr>, pet <chr>
 
-\`a. What does the above code chunk do?
+Explanation:
 
-\`b. Plot the counts of the pet names (animal_name) in top_10_names
+This code defines a vector top_10_names that contains the 10 most common
+pet names identified in Task 4. This list will be used to filter and
+analyze the dataset for these specific pet names.
 
 ``` r
 top_10_names <- seattlepets %>% 
@@ -235,6 +272,17 @@ top_10_names
     ## 10 2018-11-24         S137301        Lucy        Dog     Hound                  
     ## # ℹ 2,964 more rows
     ## # ℹ 3 more variables: secondary_breed <chr>, zip_code <chr>, pet <chr>
+
+Explanation:
+
+1.  We filter the seattlepets dataset to include only the records where
+    animal_name is in top_10_names using filter(animal_name %in%
+    top_10_names).
+2.  We then use ggplot2 to create a bar plot where the x-axis represents
+    animal_name and the fill color represents the species. The
+    geom_bar(position = “dodge”) creates a bar plot with bars for
+    different species side by side.
+3.  Finally, we add labels and a minimal theme for better readability.
 
 \`10. (2 points)
 

@@ -32,7 +32,14 @@ library(ggrepel)
 num_pets <- nrow(seattlepets)
 num_pets
 ```
-Write your narrative here
+Explanation:
+
+Counting Pets:
+num_pets <- nrow(seattlepets): Counts the rows in the dataset seattlepets, storing the count in num_pets.
+Displaying Count:
+num_pets: Displays the total count of pets stored in num_pets.
+Brief Summary:
+This code counts the total number of pets in the dataset seattlepets and displays the count. Each row represents one pet in the dataset.
 
 
 
@@ -44,7 +51,16 @@ Write your narrative here
 num_variables <- ncol(seattlepets)
 num_variables
 ```
-Write your narrative below
+Explanation:
+
+Counting Variables:
+num_variables <- ncol(seattlepets): Calculates the number of variables (columns) in the seattlepets dataset.
+The ncol() function returns the number of variables in the data frame passed to it, which in this case is seattlepets.
+The resulting number is stored in the variable num_variables.
+Displaying Count:
+num_variables: Displays the total count of variables stored in num_variables.
+Brief Summary:
+This code counts the total number of variables in the seattlepets dataset and displays the count. Each column represents one variable in the dataset.
 
 
 
@@ -54,8 +70,17 @@ Write your narrative below
 species_count <- table(seattlepets$species)
 species_count
 ```
-Write your narrative here
+Explanation:
 
+Counting Species Frequency:
+species_count <- table(seattlepets$species): Calculates the frequency of each species in the seattlepets dataset.
+The table() function creates a frequency table of the specified variable, which in this case is species extracted from the seattlepets dataset.
+It counts the occurrences of each unique value in the species column and returns a table summarizing the counts.
+The resulting frequency table is stored in the variable species_count.
+Displaying Frequency Table:
+species_count: Displays the frequency table showing the count of each species.
+Brief Summary:
+This code calculates the frequency of each species recorded in the seattlepets dataset and displays the frequency table. It provides insights into the distribution table. It provides insights into the distribution of different species among the registered pets.
 
 `4. (2 points)
 ```{r}
@@ -68,7 +93,16 @@ sorted_pet_names <- sort(pet_name_frequency, decreasing = TRUE)
 # Display the top ten most common pet names
 head(sorted_pet_names, 10)
 ```
-Write your narrative here
+Explanation:
+.
+Counting Pet Name Frequency:
+pet_name_frequency <- table(seattlepets$animal_name): Calculates the frequency of each pet name in the seattlepets dataset.
+The table() function creates a frequency table of the specified variable, which in this case is animal_name extracted from the seattlepets dataset.
+It counts the occurrences of each unique pet name in the animal_name column and returns a table summarizing the counts.
+The resulting frequency table is stored in the variable pet_name_frequency.
+Sorting the Frequency Table:
+sorted_pet_names <- sort(pet_name_frequency, decreasing = TRUE): Sorts the frequency table pet_name_frequency in descending order based on the count of each pet name.
+
 
 
 `5. (2 points)
@@ -82,7 +116,19 @@ sorted_pig_records <- arrange(pig_records, animal_name)
 # Display the sorted pig records
 sorted_pig_records
 ```
-Write your narrative here
+Explanation:
+Filtering Records for Species Pig:
+pig_records <- filter(seattlepets, species == "Pig"): Filters the records in the seattlepets dataset to only include those where the species is “Pig”.
+The filter() function selects rows from the dataset where the condition species == "Pig" is met.
+It creates a subset of the dataset containing only records for pigs.
+The filtered records are stored in the variable pig_records.
+Arranging Filtered Records by Pet Names:
+sorted_pig_records <- arrange(pig_records, animal_name): Arranges the filtered pig records by pet names (animal_name) in ascending order.
+The arrange() function sorts the rows of the dataset based on the specified column, which in this case is animal_name.
+The records are sorted alphabetically by pet names.
+The sorted records are stored in the variable sorted_pig_records.
+
+
 
 
 
@@ -98,7 +144,22 @@ sorted_goat_records <- arrange(goat_records, animal_name)
 # Display the sorted goat records
 sorted_goat_records
 ```
-Write your narrative here
+Explanation:
+Selecting Pet Name and Primary Breed for Species Goat:
+goat_records <- select(filter(seattlepets, species == "Goat"), animal_name, primary_breed): Selects only the columns animal_name and primary_breed from the seattlepets dataset for records where the species is “Goat”.
+The filter() function is used to subset the dataset to include only records where the species is “Goat”.
+The select() function then selects the specified columns (animal_name and primary_breed) from the filtered dataset.
+The selected records are stored in the variable goat_records.
+Arranging Selected Records by Pet Names:
+sorted_goat_records <- arrange(goat_records, animal_name): Arranges the selected goat records by pet names (animal_name) in ascending order.
+The arrange() function sorts the rows of the dataset based on the specified column, which in this case is animal_name.
+The records are sorted alphabetically by pet names.
+The sorted records are stored in the variable sorted_goat_records.Displaying the Sorted Goat Records:
+sorted_goat_records: Displays the selected goat records sorted by pet names.
+This command shows the subset of data containing information about goats, with columns for pet names and primary breeds, arranged alphabetically by pet names.
+
+
+
 
 
 
@@ -118,7 +179,15 @@ sorted_records <- select(seattlepets, license_number, pet) %>%
 # Display the sorted records
 sorted_records
 ```
-Write your narrative here
+Explanation:
+Loading the Required Library:
+library(dplyr): Loads the dplyr library, which provides functions for data manipulation.
+Concatenating Columns into a Single Column:
+seattlepets <- mutate(seattlepets, pet = paste(animal_name, species, sep = " - ")): Creates a new column named “pet” in the seattlepets dataset by concatenating the columns animal_name and species with a separator (“-”).
+The mutate() function is used to add new variables or modify existing variables in the dataset.
+The paste() function concatenates the values of animal_name and species, with ” - ” as the separator.
+
+
 
 
 
@@ -135,7 +204,17 @@ species_plot <- ggplot(seattlepets, aes(x = species)) +
 # Display the plot
 print(species_plot)
 ```
-Write your narrative here
+Explanation:
+Loading the Required Library:
+library(ggplot2): Loads the ggplot2 library, which provides functions for creating data visualizations.
+Creating a Bar Plot of Species Counts:
+species_plot <- ggplot(seattlepets, aes(x = species)) + geom_bar() + labs(title = "Counts of Species", x = "Species", y = "Count") + theme(axis.text.x = element_text(angle = 45, hjust = 1)):
+ggplot() initializes a new ggplot object.
+seattlepets specifies the dataset to be used.
+aes(x = species) maps the x-axis to the “species” column in the dataset.
+geom_bar() creates a bar plot where the height of each bar represents the count of occurrences of each species.
+labs() sets the title and axis labels for the plot.
+
 
 
 
@@ -147,18 +226,22 @@ filter(animal_name %in% c( "Lucy"  , "Charlie" , "Luna" , "Bella" , "Max"    ,
                            "Daisy" , "Molly"   , "Jack" , "Lily"  , "Stella" ))
 top_10_names
 ```
-`a.	What does the above code chunk do?
 
 
+This code defines a vector top_10_names that contains the 10 most common pet names identified in Task 4. This list will be used to filter and analyze the dataset for these specific pet names.
 
-`b. Plot the counts of the pet names (animal_name) in top_10_names
+
 ```{r}
 top_10_names <- seattlepets %>% 
 filter(animal_name %in% c( "Lucy"  , "Charlie" , "Luna" , "Bella" , "Max"    , 
                            "Daisy" , "Molly"   , "Jack" , "Lily"  , "Stella" ))
 top_10_names
 ```
+Explanation:
 
+1. We filter the seattlepets dataset to include only the records where animal_name is in top_10_names using filter(animal_name %in% top_10_names).
+2. We then use ggplot2 to create a bar plot where the x-axis represents animal_name and the fill color represents the species. The geom_bar(position = "dodge") creates a bar plot with bars for different species side by side. 
+3. Finally, we add labels and a minimal theme for better readability.
 
 `10.  (2 points)
 
